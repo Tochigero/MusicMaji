@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -21,8 +22,14 @@ import javax.swing.*;
 		JButton playBut = new JButton();
 		JButton pauseBut = new JButton();
 		JButton stopBut = new JButton();
+		JButton rembBut = new JButton();
+		JButton deboBut = new JButton();
+		
+		
 		JLayerTest mus = new JLayerTest(); 
-		//File f = new File()
+		
+		String imagesPath = "Ressources"+File.separator+"Images"+File.separator;
+		String musicsPath = "Ressources"+File.separator+"Musics"+File.separator;
 		
 		public static JPanel setBackgroundImage(final File img) throws IOException
 		{
@@ -49,32 +56,40 @@ import javax.swing.*;
 	        
 	        JPanel panel = new JPanel();
 	        try {
-				panel = setBackgroundImage(new File("Ressources"+File.separator+"Images"+File.separator+"Fond.png"));
+				panel = setBackgroundImage(new File(imagesPath+"Fond.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        panel.setLayout(null);
-	        /*
-	        ImageIcon fond = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Fond.png");
-	        JLabel wallpaper = new JLabel(fond);
-	        wallpaper.setBounds(0, 0, 800, 600);
-	        panel.add(wallpaper);*/
 	        
-	        ImageIcon playIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Play.png");
+	        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(imagesPath+"Icone.png"));
+
+	        panel.setLayout(null);
+	        
+	        ImageIcon playIc = new ImageIcon(imagesPath+"Play.png");
 	        JLabel playIcon = new JLabel(playIc);
 	        playIcon.setBounds(350, 225, 100, 100);
 	        panel.add(playIcon);
 
-	        ImageIcon pauseIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Pause.png");
+	        ImageIcon pauseIc = new ImageIcon(imagesPath+"Pause.png");
 	        JLabel pauseIcon = new JLabel(pauseIc);
 	        pauseIcon.setBounds(280, 240, 70, 70);
 	        panel.add(pauseIcon);
 
-	        ImageIcon stopIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Stop.png");
+	        ImageIcon stopIc = new ImageIcon(imagesPath+"Stop.png");
 	        JLabel stopIcon = new JLabel(stopIc);
 	        stopIcon.setBounds(450, 240, 70, 70);
 	        panel.add(stopIcon);
+
+	        ImageIcon rembIc = new ImageIcon(imagesPath+"Rembobiner.png");
+	        JLabel rembIcon = new JLabel(rembIc);
+	        rembIcon.setBounds(220, 245, 60, 60);
+	        panel.add(rembIcon);
+	        
+	        ImageIcon deboIc = new ImageIcon(imagesPath+"Debobiner.png");
+	        JLabel deboIcon = new JLabel(deboIc);
+	        deboIcon.setBounds(520, 245, 60, 60);
+	        panel.add(deboIcon);
 
 	        playBut.setBounds(355, 230, 90, 90);
 	        playBut.setBorderPainted(false);
@@ -89,15 +104,23 @@ import javax.swing.*;
 	        panel.add(pauseBut);
 	        
 	   
-	        stopBut.setText("Stop");
-	        stopBut.addActionListener(this);
 	        stopBut.setBounds(450, 240, 70, 70);
 	        stopBut.setBorderPainted(false);
 	        stopBut.setContentAreaFilled(false);
+	        stopBut.addActionListener(this);
 	        panel.add(stopBut);
 	        
+	        rembBut.setBounds(220, 245, 60, 60);
+	        rembBut.setBorderPainted(false);
+	        rembBut.setContentAreaFilled(false);
+	        panel.add(rembBut);
 
-        frame.add(panel);
+	        deboBut.setBounds(520, 245, 60, 60);
+	        deboBut.setBorderPainted(false);
+	        deboBut.setContentAreaFilled(false);
+	        panel.add(deboBut);
+
+	        frame.add(panel);
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
