@@ -6,7 +6,7 @@ import javazoom.jl.player.advanced.*;
 
 	public class JLayerTest
 	{
-	    public static void main(String[] args)
+	    public static void lecture()
 	    {
 	        SoundJLayer soundToPlay = new SoundJLayer("Test.mp3");
 
@@ -29,7 +29,9 @@ import javazoom.jl.player.advanced.*;
 	    {
 	        try
 	        {
-	            String urlAsString = "Ressources"+File.separator+"Musics"+File.separator+"Test.mp3";
+	            String urlAsString = "file:///"
+	            		+ new java.io.File(".").getCanonicalPath() + "/Ressources/Musics/" 
+	            		+ this.filePath ;
 
 	            this.player = new AdvancedPlayer
 	            (
