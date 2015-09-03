@@ -15,6 +15,7 @@ import javax.swing.*;
 	public class MainFrame extends JFrame implements ActionListener {
 
 		JButton playBut = new JButton();
+		JButton stopBut = new JButton();
 		JLayerTest mus = new JLayerTest(); 
 		//File f = new File()
 		
@@ -36,8 +37,9 @@ import javax.swing.*;
 	        pauseBut.setText("Pause");
 	        panel.add(pauseBut);
 	        
-	        JButton stopBut = new JButton();
+	   
 	        stopBut.setText("Stop");
+	        stopBut.addActionListener(this);
 	        panel.add(stopBut);
 	        
 	        panel.add(label);
@@ -58,6 +60,9 @@ import javax.swing.*;
 				System.out.println("Play");
 				mus.lecture();
 				
+			}else if(e.getSource() == stopBut){
+				System.out.println("stop");
+				mus.stop();
 			}
 			
 		}

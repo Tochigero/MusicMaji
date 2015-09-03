@@ -6,12 +6,21 @@ import javazoom.jl.player.advanced.*;
 
 	public class JLayerTest
 	{
+		static SoundJLayer soundToPlay = new SoundJLayer("Test.mp3");
 	    public static void lecture()
 	    {
-	        SoundJLayer soundToPlay = new SoundJLayer("Test.mp3");
 
 	        soundToPlay.play();
 	    }
+	    
+	    public static void stop()
+	    {
+	    	soundToPlay.stop();
+	    	
+	    }
+	       
+	    
+	  
 	}
 
 	class SoundJLayer extends PlaybackListener implements Runnable
@@ -23,6 +32,10 @@ import javazoom.jl.player.advanced.*;
 	    public SoundJLayer(String filePath)
 	    {
 	        this.filePath = filePath;
+	    }
+	    public void stop()
+	    {
+	    	player.stop();
 	    }
 
 	    public void play()
