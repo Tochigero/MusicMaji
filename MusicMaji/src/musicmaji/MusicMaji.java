@@ -12,6 +12,7 @@ public class MusicMaji {
     public static void main(String[] args) {
         System.out.println("Hello world !!!");
         System.out.println("Ceci est la main page");
+        System.out.println("Bob");
     }
 
 }
