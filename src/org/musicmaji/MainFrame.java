@@ -4,9 +4,9 @@ import java.awt.FlowLayout;
  
 import javax.swing.*;
 	 
-	public class Frame extends JFrame{
+	public class MainFrame extends JFrame{
 	 
-	    public  Frame() {     
+	    public  MainFrame() {     
 	        		
 	        		
 	        JFrame frame = new JFrame("MusicMaji");
