@@ -14,7 +14,7 @@ import javax.swing.*;
 	        JPanel panel = new JPanel();
 	        panel.setLayout(new FlowLayout());
 	 
-	        JLabel label = new JLabel("Chose your music");
+	        JLabel label = new JLabel("Choose your music");
 	 
 	        JButton button = new JButton();
 	        button.setText("Play");
