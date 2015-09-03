@@ -22,36 +22,47 @@ import javax.swing.*;
 	    public  MainFrame() {     
 	        		    	
 	        JFrame frame = new JFrame("MusicMaji");
-
+	        
 	        JPanel panel = new JPanel();
-	        panel.setLayout(new FlowLayout());
+	        panel.setLayout(null);
 	        panel.setBackground(Color.BLACK);
 	        
 	        JLabel label = new JLabel("Choose your music");
 	 
 	        ImageIcon playIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Play.png");
 	        JLabel playIcon = new JLabel(playIc);
+	        playIcon.setBounds(350, 225, 100, 100);
 	        panel.add(playIcon);
 
 	        ImageIcon pauseIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Pause.png");
 	        JLabel pauseIcon = new JLabel(pauseIc);
+	        pauseIcon.setBounds(280, 240, 70, 70);
 	        panel.add(pauseIcon);
 
 	        ImageIcon stopIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Stop.png");
 	        JLabel stopIcon = new JLabel(stopIc);
+	        stopIcon.setBounds(450, 240, 70, 70);
 	        panel.add(stopIcon);
 
-	        playBut.setText("Play");
+	        playBut.setBounds(355, 230, 90, 90);
+	        playBut.setBorderPainted(false);
+	        playBut.setContentAreaFilled(false);
 	        playBut.addActionListener(this);
 	        panel.add(playBut);
 
 	        JButton pauseBut = new JButton();
-	        pauseBut.setText("Pause");
+	        pauseBut.setBounds(280, 240, 70, 70);
+	        pauseBut.setBorderPainted(false);
+	        pauseBut.setContentAreaFilled(false);
+	        //TODO : Action listener
 	        panel.add(pauseBut);
 	        
 	   
 	        stopBut.setText("Stop");
 	        stopBut.addActionListener(this);
+	        stopBut.setBounds(450, 240, 70, 70);
+	        stopBut.setBorderPainted(false);
+	        stopBut.setContentAreaFilled(false);
 	        panel.add(stopBut);
 	        
 	        panel.add(label);
@@ -61,8 +72,7 @@ import javax.swing.*;
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.repaint();
-        frame.revalidate();
+        frame.setResizable(false);
         
     }
 
