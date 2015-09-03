@@ -15,6 +15,7 @@ import javax.swing.*;
 	public class MainFrame extends JFrame implements ActionListener {
 
 		JButton playBut = new JButton();
+		JButton pauseBut = new JButton();
 		JButton stopBut = new JButton();
 		JLayerTest mus = new JLayerTest(); 
 		//File f = new File()
@@ -27,7 +28,6 @@ import javax.swing.*;
 	        panel.setLayout(null);
 	        panel.setBackground(Color.BLACK);
 	        
-	        JLabel label = new JLabel("Choose your music");
 	 
 	        ImageIcon playIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Play.png");
 	        JLabel playIcon = new JLabel(playIc);
@@ -50,11 +50,10 @@ import javax.swing.*;
 	        playBut.addActionListener(this);
 	        panel.add(playBut);
 
-	        JButton pauseBut = new JButton();
 	        pauseBut.setBounds(280, 240, 70, 70);
 	        pauseBut.setBorderPainted(false);
 	        pauseBut.setContentAreaFilled(false);
-	        //TODO : Action listener
+	        pauseBut.addActionListener(this);
 	        panel.add(pauseBut);
 	        
 	   
@@ -65,7 +64,6 @@ import javax.swing.*;
 	        stopBut.setContentAreaFilled(false);
 	        panel.add(stopBut);
 	        
-	        panel.add(label);
 
         frame.add(panel);
         frame.setSize(800, 600);
@@ -85,6 +83,10 @@ import javax.swing.*;
 			}else if(e.getSource() == stopBut){
 				System.out.println("stop");
 				mus.stop();
+			}
+			else if(e.getSource() == pauseBut){
+				System.out.println("pause");
+				mus.pause();
 			}
 			
 		}
