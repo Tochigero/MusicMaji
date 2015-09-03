@@ -6,11 +6,15 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 	 
 	public class MainFrame extends JFrame implements ActionListener {
 
@@ -20,15 +24,43 @@ import javax.swing.*;
 		JLayerTest mus = new JLayerTest(); 
 		//File f = new File()
 		
+		public static JPanel setBackgroundImage(final File img) throws IOException
+		{
+			JPanel panel = new JPanel()
+			{
+				private static final long serialVersionUID = 1;
+				
+				private BufferedImage buf = ImageIO.read(img);
+				
+				@Override
+				protected void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);
+					g.drawImage(buf, 0,0, null);
+				}
+			};
+			
+			return panel;
+		}
+
 	    public  MainFrame() {     
 	        		    	
 	        JFrame frame = new JFrame("MusicMaji");
 	        
 	        JPanel panel = new JPanel();
+	        try {
+				panel = setBackgroundImage(new File("Ressources"+File.separator+"Images"+File.separator+"Fond.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        panel.setLayout(null);
-	        panel.setBackground(Color.BLACK);
+	        /*
+	        ImageIcon fond = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Fond.png");
+	        JLabel wallpaper = new JLabel(fond);
+	        wallpaper.setBounds(0, 0, 800, 600);
+	        panel.add(wallpaper);*/
 	        
-	 
 	        ImageIcon playIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Play.png");
 	        JLabel playIcon = new JLabel(playIc);
 	        playIcon.setBounds(350, 225, 100, 100);
