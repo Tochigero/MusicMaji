@@ -29,6 +29,18 @@ import javax.swing.*;
 	        
 	        JLabel label = new JLabel("Choose your music");
 	 
+	        ImageIcon playIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Play.png");
+	        JLabel playIcon = new JLabel(playIc);
+	        panel.add(playIcon);
+
+	        ImageIcon pauseIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Pause.png");
+	        JLabel pauseIcon = new JLabel(pauseIc);
+	        panel.add(pauseIcon);
+
+	        ImageIcon stopIc = new ImageIcon("Ressources"+File.separator+"Images"+File.separator+"Stop.png");
+	        JLabel stopIcon = new JLabel(stopIc);
+	        panel.add(stopIcon);
+
 	        playBut.setText("Play");
 	        playBut.addActionListener(this);
 	        panel.add(playBut);
@@ -45,7 +57,7 @@ import javax.swing.*;
 	        panel.add(label);
 
         frame.add(panel);
-        frame.setSize(300, 300);
+        frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
