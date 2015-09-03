@@ -11,7 +11,8 @@ import javax.swing.*;
 	public class MainFrame extends JFrame implements ActionListener {
 
 		JButton playBut = new JButton();
-		File f = new File("Ressources"+File.separator+"Musics"+File.separator+"Test.mp3");
+		JLayerTest mus = new JLayerTest(); 
+		//File f = new File()
 
 	    public  MainFrame() {     
 	        		
@@ -50,6 +51,8 @@ import javax.swing.*;
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == playBut) {
 				System.out.println("Play");
+				mus.lecture();
+				
 			}
 			
 		}
