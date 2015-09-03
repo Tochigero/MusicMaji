@@ -2,10 +2,14 @@ package org.musicmaji;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 	 
 	public class MainFrame extends JFrame implements ActionListener {
@@ -13,16 +17,15 @@ import javax.swing.*;
 		JButton playBut = new JButton();
 		JLayerTest mus = new JLayerTest(); 
 		//File f = new File()
-
+		
 	    public  MainFrame() {     
-	        		
-	        		
+	        		    	
 	        JFrame frame = new JFrame("MusicMaji");
 
 	        JPanel panel = new JPanel();
 	        panel.setLayout(new FlowLayout());
 	        panel.setBackground(Color.BLACK);
-	 
+	        
 	        JLabel label = new JLabel("Choose your music");
 	 
 	        playBut.setText("Play");
@@ -44,7 +47,9 @@ import javax.swing.*;
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
- 
+        frame.repaint();
+        frame.revalidate();
+        
     }
 
 		@Override
