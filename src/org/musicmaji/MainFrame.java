@@ -11,7 +11,7 @@ import javax.swing.*;
 	public class MainFrame extends JFrame implements ActionListener {
 
 		JButton playBut = new JButton();
-		File f = new File()
+		File f = new File("Ressources"+File.separator+"Musics"+File.separator+"Test.mp3");
 
 	    public  MainFrame() {     
 	        		

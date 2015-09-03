@@ -1,5 +1,7 @@
 package org.musicmaji;
 
+import java.io.File;
+
 import javazoom.jl.player.advanced.*;
 
 	public class JLayerTest
@@ -27,9 +29,7 @@ import javazoom.jl.player.advanced.*;
 	    {
 	        try
 	        {
-	            String urlAsString = "file:///"
-	            		+ new java.io.File(".").getCanonicalPath() + "/" 
-	            		+ this.filePath;
+	            String urlAsString = "Ressources"+File.separator+"Musics"+File.separator+"Test.mp3";
 
 	            this.player = new AdvancedPlayer
 	            (
