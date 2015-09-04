@@ -24,7 +24,7 @@ public class JLayerTest {
 	    private final Object playerLock = new Object();
 
 	    // status variable what player thread is doing/supposed to do
-	    private int playerStatus = NOTSTARTED;
+	    public static int playerStatus = NOTSTARTED;
 
 	    public JLayerTest(final InputStream inputStream) throws JavaLayerException {
 	        this.player = new Player(inputStream);
@@ -67,6 +67,7 @@ public class JLayerTest {
 	    public boolean pause() {
 	        synchronized (playerLock) {
 	            if (playerStatus == PLAYING) {
+	            	System.out.println();
 	                playerStatus = PAUSED;
 	            }
 	            System.out.println("test2");

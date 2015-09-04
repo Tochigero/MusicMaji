@@ -145,19 +145,27 @@ import javax.swing.*;
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try{
-				FileInputStream input = new FileInputStream("Ressources/Musics/Linkin Park - Numb.mp3"); 
-				JLayerTest mus = new JLayerTest(input); 
+				FileInputStream input = new FileInputStream("Ressources/Musics/Blue.mp3"); 
+				JLayerTest player = new JLayerTest(input); 
 				if (e.getSource() == playBut) {
 					System.out.println("Play");
-					mus.play();
+					if(JLayerTest.playerStatus == 0){
+						player.play();
+					} else if(JLayerTest.playerStatus == 2){
+						System.out.println("on passe?");
+						player.resume();
+					}else{
+						player.play();
+						System.out.println("test");
+					}
 					
 				}else if(e.getSource() == stopBut){
 					System.out.println("stop");
-					mus.stop();
+					player.stop();
 				}
 				else if(e.getSource() == pauseBut){
 					System.out.println("pause");
-					mus.pause();
+					player.pause();
 				}else if(e.getSource() == rembBut) {
 					System.out.println("Rembobiner");
 					//action rembob
@@ -165,8 +173,8 @@ import javax.swing.*;
 					System.out.println("Debobiner");
 					//action debob
 				} else if(e.getSource() == BiblioBut) {
-					System.out.println("Biblioth�que");
-					//action ouverture biblioth�que
+					System.out.println("Bibliotheque");
+					//action ouverture bibliotheque
 				}	
 				
 			}catch(Exception ex){
