@@ -1,6 +1,5 @@
 package org.musicmaji;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
@@ -55,6 +54,7 @@ public class JLayerTest {
 	                case PAUSED:
 	                    resume();
 	                    break;
+
 	                default:
 	                    break;
 	            }
@@ -94,7 +94,6 @@ public class JLayerTest {
 	    public void stop() {
 	        synchronized (playerLock) {
 	            playerStatus = FINISHED;
-	            playerLock.notifyAll();
 	            System.out.println("test stop");
 	        }
 	    }
@@ -112,7 +111,7 @@ public class JLayerTest {
 	            synchronized (playerLock) {
 	                while (playerStatus == PAUSED) {
 	                    try {
-	                        playerLock.wait();
+	                        Thread.sleep(20);
 	                    } catch (final InterruptedException e) {
 	                        // terminate player
 	                        break;
@@ -132,9 +131,13 @@ public class JLayerTest {
 	        }
 	        try {
 	            player.close();
+	            Thread.interrupted();
+	            
 	        } catch (final Exception e) {
 	            // ignore, we are terminating anyway
 	        }
 	    }
+
+
 	}
 

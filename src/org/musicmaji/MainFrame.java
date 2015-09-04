@@ -145,28 +145,24 @@ import javax.swing.*;
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try{
-				FileInputStream input = new FileInputStream("Ressources/Musics/Blue.mp3"); 
+				FileInputStream input = new FileInputStream("Ressources/Musics/Bullet For My Valentine - Tears Don't Fall.mp3"); 
 				JLayerTest player = new JLayerTest(input); 
 				if (e.getSource() == playBut) {
 					System.out.println("Play");
-					if(JLayerTest.playerStatus == 0){
+					if(JLayerTest.playerStatus == 0)
 						player.play();
-					} else if(JLayerTest.playerStatus == 2){
-						System.out.println("on passe?");
-						player.resume();
-					}else{
+					else if (JLayerTest.playerStatus == 3 )
+						JLayerTest.playerStatus=0;
 						player.play();
-						System.out.println("test");
-					}
 					
-				}else if(e.getSource() == stopBut){
+					
+				} else if(e.getSource() == stopBut){
 					System.out.println("stop");
 					player.stop();
-				}
-				else if(e.getSource() == pauseBut){
+				} else if(e.getSource() == pauseBut){
 					System.out.println("pause");
 					player.pause();
-				}else if(e.getSource() == rembBut) {
+				} else if(e.getSource() == rembBut) {
 					System.out.println("Rembobiner");
 					//action rembob
 				} else if(e.getSource() == deboBut) {
