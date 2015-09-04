@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -27,7 +28,6 @@ import javax.swing.*;
 		JButton BiblioBut = new JButton();
 		
 		
-		JLayerTest mus = new JLayerTest(); 
 		
 		String imagesPath = "Ressources"+File.separator+"Images"+File.separator;
 		String musicsPath = "Ressources"+File.separator+"Musics"+File.separator;
@@ -144,25 +144,36 @@ import javax.swing.*;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == playBut) {
-				System.out.println("Play");
-				mus.lecture();	
-			} else if(e.getSource() == stopBut){
-				System.out.println("stop");
-				mus.stop();
-			} else if(e.getSource() == pauseBut){
-				System.out.println("pause");
-				mus.pause();
-			} else if(e.getSource() == rembBut) {
-				System.out.println("Rembobiner");
-				//action rembob
-			} else if(e.getSource() == deboBut) {
-				System.out.println("Debobiner");
-				//action debob
-			} else if(e.getSource() == BiblioBut) {
-				System.out.println("Bibliothèque");
-				//action ouverture bibliothèque
-			}			
+			try{
+				FileInputStream input = new FileInputStream("Ressources/Musics/Test.mp3"); 
+				JLayerTest mus = new JLayerTest(input); 
+				if (e.getSource() == playBut) {
+					System.out.println("Play");
+					mus.play();
+					
+				}else if(e.getSource() == stopBut){
+					System.out.println("stop");
+					mus.stop();
+				}
+				else if(e.getSource() == pauseBut){
+					System.out.println("pause");
+					mus.pause();
+				}else if(e.getSource() == rembBut) {
+					System.out.println("Rembobiner");
+					//action rembob
+				} else if(e.getSource() == deboBut) {
+					System.out.println("Debobiner");
+					//action debob
+				} else if(e.getSource() == BiblioBut) {
+					System.out.println("Bibliothï¿½que");
+					//action ouverture bibliothï¿½que
+				}	
+				
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+			
 		}
+	    
 	 
 }
