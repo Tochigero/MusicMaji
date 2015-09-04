@@ -69,6 +69,7 @@ public class JLayerTest {
 	            if (playerStatus == PLAYING) {
 	                playerStatus = PAUSED;
 	            }
+	            System.out.println("test2");
 	            return playerStatus == PAUSED;
 	        }
 	    }
@@ -93,6 +94,7 @@ public class JLayerTest {
 	        synchronized (playerLock) {
 	            playerStatus = FINISHED;
 	            playerLock.notifyAll();
+	            System.out.println("test stop");
 	        }
 	    }
 
