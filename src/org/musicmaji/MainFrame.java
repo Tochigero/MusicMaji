@@ -145,7 +145,7 @@ import javax.swing.*;
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try{
-				FileInputStream input = new FileInputStream("Ressources/Musics/Test.mp3"); 
+				FileInputStream input = new FileInputStream("Ressources/Musics/Linkin Park - Numb.mp3"); 
 				JLayerTest mus = new JLayerTest(input); 
 				if (e.getSource() == playBut) {
 					System.out.println("Play");
