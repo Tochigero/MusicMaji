@@ -2,7 +2,11 @@ package org.musicmaji;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -27,10 +31,17 @@ import javax.swing.*;
 		JButton deboBut = new JButton();
 		JButton BiblioBut = new JButton();
 		
+        static JLabel BandeauCurrentMusic = new JLabel("");
 		
+		public static boolean biblioOpen = false;		
+		public static boolean alreadyBeenOpen = false;
 		
-		String imagesPath = "Ressources"+File.separator+"Images"+File.separator;
-		String musicsPath = "Ressources"+File.separator+"Musics"+File.separator;
+		public static String imagesPath = "Ressources"+File.separator+"Images"+File.separator;
+		public static String musicsPath = "Ressources"+File.separator+"Musics"+File.separator;
+		public static String policesPath = "Ressources"+File.separator+"Polices"+File.separator;
+		public static String musiqueCourante = "";
+
+        static JPanel panel = new JPanel();
 		
 		public static JPanel setBackgroundImage(final File img) throws IOException
 		{
@@ -55,7 +66,6 @@ import javax.swing.*;
 	        		    	
 	        JFrame frame = new JFrame("MusicMaji");
 	        
-	        JPanel panel = new JPanel();
 	        try {
 				panel = setBackgroundImage(new File(imagesPath+"Fond.png"));
 			} catch (IOException e) {
@@ -100,7 +110,7 @@ import javax.swing.*;
 	        stopBut.addActionListener(this);
 	        panel.add(stopBut);
 	        
-	        ImageIcon rembIc = new ImageIcon(imagesPath+"Rembobiner.png");
+/*	        ImageIcon rembIc = new ImageIcon(imagesPath+"Rembobiner.png");
 	        JLabel rembIcon = new JLabel(rembIc);
 	        rembIcon.setBounds(220, 245, 60, 60);
 	        panel.add(rembIcon);
@@ -115,7 +125,7 @@ import javax.swing.*;
 	        JLabel deboIcon = new JLabel(deboIc);
 	        deboIcon.setBounds(520, 245, 60, 60);
 	        panel.add(deboIcon);
-
+*/
 	        deboBut.setBounds(520, 245, 60, 60);
 	        deboBut.setBorderPainted(false);
 	        deboBut.setContentAreaFilled(false);
@@ -132,7 +142,31 @@ import javax.swing.*;
 	        BiblioBut.setBorderPainted(false);
 	        BiblioBut.addActionListener(this);
 	        panel.add(BiblioBut);
+	          
+	        ImageIcon BandeauIc = new ImageIcon(imagesPath+"Bandeau.png");
+	        JLabel BandeauIcon = new JLabel(BandeauIc);
+	        BandeauIcon.setBounds(100, 450, 600, 100);
+	        panel.add(BandeauIcon);
 	        
+	        Font font = new Font("", Font.PLAIN, 20);
+	        
+	        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	        try {
+				font = Font.createFont(Font.TRUETYPE_FONT,new File(policesPath+"ATOMICCLOCKRADIO.ttf"));
+		        ge.registerFont(font);
+		        font = font.deriveFont(Font.TRUETYPE_FONT, 30);
+		        
+	        } catch (FontFormatException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+	        //get musiqueCourante
+	        BandeauCurrentMusic.setFont(font);
+	        BandeauCurrentMusic.setForeground(new Color(0, 255, 0));
+	        BandeauCurrentMusic.setBounds(125, 450, 571, 100);
+	        panel.add(BandeauCurrentMusic);    	
+
 	        frame.add(panel);
 	        frame.setSize(800, 600);
 	        frame.setLocationRelativeTo(null);
@@ -144,36 +178,44 @@ import javax.swing.*;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			System.out.println("bob");
 			try{
-				FileInputStream input = new FileInputStream("Ressources/Musics/Bullet For My Valentine - Tears Don't Fall.mp3"); 
-				JLayerTest player = new JLayerTest(input); 
-				if (e.getSource() == playBut) {
-					System.out.println("Play");
-					if(JLayerTest.playerStatus == 0)
-						player.play();
-					else if (JLayerTest.playerStatus == 3 )
-						JLayerTest.playerStatus=0;
-						player.play();
+				if (musiqueCourante.length()>0) {
+					FileInputStream input = new FileInputStream(musicsPath+musiqueCourante); 
+					JLayerTest player = new JLayerTest(input); 
+					if (e.getSource() == playBut) {
+						System.out.println("Play");
+						if(JLayerTest.playerStatus == 0)
+							player.play();
+						else if (JLayerTest.playerStatus == 3 )
+							JLayerTest.playerStatus=0;
+							player.play();
+					} else if(e.getSource() == stopBut){
+						System.out.println("stop");
+						player.stop();
+					} else if(e.getSource() == pauseBut){
+						System.out.println("pause");
+						player.pause();
+					} /* else if(e.getSource() == rembBut) {
+						System.out.println("Rembobiner");
+						//action rembob
+					} else if(e.getSource() == deboBut) {
+						System.out.println("Debobiner");
+						//action debob
+					} */
 					
-					
-				} else if(e.getSource() == stopBut){
-					System.out.println("stop");
-					player.stop();
-				} else if(e.getSource() == pauseBut){
-					System.out.println("pause");
-					player.pause();
-				} else if(e.getSource() == rembBut) {
-					System.out.println("Rembobiner");
-					//action rembob
-				} else if(e.getSource() == deboBut) {
-					System.out.println("Debobiner");
-					//action debob
-				} else if(e.getSource() == BiblioBut) {
-					System.out.println("Bibliotheque");
-					//action ouverture bibliotheque
-				}	
+				} 
+				if(e.getSource() == BiblioBut) {
+						System.out.println("Bibliotheque");
+						if(!biblioOpen) {
+							new Bibliotheque();
+							biblioOpen = true;
+							alreadyBeenOpen = true;
+						} else
+							System.out.println("boolean");
+				}
 				
-			}catch(Exception ex){
+			} catch(Exception ex){
 				ex.printStackTrace();
 			}
 			
